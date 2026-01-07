@@ -26,7 +26,7 @@ def bank_battery_finder(bank: str) -> str:
     elif len(bank[hbi:]) > 11:
         bank_str = bank_str[hbi:]
         bank_copy = bank_copy[hbi:]
-        for i in range(11):
+        for i in range(12):
             hbi = bank_copy.index(max(bank_copy))
             bank_str[hbi] = bank_copy[hbi]
             bank_copy[hbi] = '0'
@@ -40,10 +40,12 @@ def bank_battery_finder(bank: str) -> str:
             hbi = bank_copy.index(max(bank_copy))
             bank_str[hbi] = bank_copy[hbi]
             bank_copy[hbi] = '0'
+            # print(len([i for i in bank_copy[hbi:] if int(i) != 0]))
+            bank_copy[:hbi] = ['0' for i in bank_copy[:hbi]]
 
 
     # print(bank_str)
-    # print(''.join(i for i in bank_str if i > '0'))
+    print(''.join(i for i in bank_str if i > '0'))
 
 
     max_cap = ''.join(i for i in bank_str if i > '0')
